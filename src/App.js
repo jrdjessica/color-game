@@ -1,6 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 
+function ChooseColor() {
+  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+}
+
 function Circles() {
   return (
     <div>
@@ -13,6 +17,7 @@ function App() {
   return (
     <div className="App">
       <Circles />
+      <ChooseColor />
     </div>
   );
 }
