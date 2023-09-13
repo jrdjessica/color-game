@@ -6,10 +6,17 @@ function ChooseColor() {
 }
 
 function Circles() {
+  const circleStyle = {
+    height: "25px",
+    width: "25px",
+    backgroundColor: "blue",
+    borderRadius: "50%",
+    display: "inline-block",
+  }
   return (
     <div>
-      <div id="circle"></div>
-    </div>
+      <div id="circle" style={circleStyle}></div>
+    </div >
   )
 }
 
@@ -17,7 +24,6 @@ function App() {
   return (
     <div className="App">
       <Circles />
-      <ChooseColor />
     </div>
   );
 }
