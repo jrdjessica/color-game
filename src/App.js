@@ -21,9 +21,14 @@ function Circles() {
 }
 
 function App() {
+  const numCircles = 5
+  const circles = Array.from({ length: numCircles }, (_, index) => (
+    <Circles key={index} />
+  ));
+
   return (
     <div className="App">
-      <Circles />
+      {circles}
     </div>
   );
 }
