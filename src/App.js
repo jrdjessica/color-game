@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 function ChooseColor() {
@@ -20,8 +20,9 @@ function Circles() {
   )
 }
 
+
 function App() {
-  const numCircles = 5
+  const [numCircles, setNumCircles] = React.useState(4)
   const circles = Array.from({ length: numCircles }, (_, index) => (
     <Circles key={index} />
   ));
