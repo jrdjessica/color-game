@@ -15,7 +15,7 @@ function Circles() {
   }
   return (
     <div>
-      <div id="circle" style={circleStyle}></div>
+      <button id="circle" style={circleStyle}></button>
     </div >
   )
 }
