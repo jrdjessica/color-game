@@ -9,11 +9,23 @@ function Circles() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   };
 
+  const circleElements = [];
+  for (let i = 0; i < numCircles; i++) {
+    circleElements.push(
+      <button
+        key={i}
+        id="circle"
+        className="circle"
+        style={{ backgroundColor: randomColor() }}
+      ></button>
+    );
+  }
+
   return (
     <div>
-      <button id="circle" style={{ backgroundColor: randomColor() }}></button>
-    </div >
-  )
+      <div className="circle-container">{circleElements}</div>
+    </div>
+  );
 }
 
 
