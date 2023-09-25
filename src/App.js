@@ -4,17 +4,23 @@ import './App.css';
 
 function Circles() {
   const [numCircles, setNumCircles] = React.useState(4);
-  const [difIndexCircle, setDifIndexCircle] = React.useState(null)
+  const [difIndexCircle, setDifIndexCircle] = React.useState('')
   const [randomColor, setRandomColor] = React.useState('black');
+  const [score, setScore] = React.useState(0)
 
   const circleElements = [];
 
   for (let i = 0; i < numCircles; i++) {
     const circleColor = i === difIndexCircle ? 'red' : randomColor
 
-    const resetColors = () => {
+    const resetLevel = () => {
+      if (difIndexCircle === i) {
+        setScore(score + 1)
+      }
+
       setRandomColor('#' + Math.floor(Math.random() * 16777215).toString(16));
       setDifIndexCircle(Math.floor(Math.random() * numCircles));
+      console.log(i)
     }
 
     circleElements.push(
@@ -23,13 +29,14 @@ function Circles() {
         id="circle"
         className="circle"
         style={{ backgroundColor: circleColor }}
-        onClick={resetColors}
+        onClick={resetLevel}
       ></button>
     );
   }
 
   return (
     <div>
+      Score: {score}
       <div className="circle-container">{circleElements}</div>
     </div>
   );
