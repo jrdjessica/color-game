@@ -3,9 +3,14 @@ import './App.css';
 
 
 function Circles() {
+
+  const randomInt = () => Math.floor(Math.random() * numCircles)
+
+  const randomHexColor = () => '#' + Math.floor(Math.random() * 16777215).toString(16)
+
   const [numCircles, setNumCircles] = React.useState(6);
-  const [difIndexCircle, setDifIndexCircle] = React.useState(null);
-  const [randomColor, setRandomColor] = React.useState('black');
+  const [difIndexCircle, setDifIndexCircle] = React.useState(randomInt(numCircles));
+  const [randomColor, setRandomColor] = React.useState(randomHexColor());
   const [score, setScore] = React.useState(0);
   const [gameStatus, setGameStatus] = React.useState('start')
 
@@ -14,8 +19,8 @@ function Circles() {
   const restartGame = () => {
     setScore(0);
     setNumCircles(6);
-    setDifIndexCircle(null);
-    setRandomColor('black');
+    setRandomColor(randomHexColor());
+    setDifIndexCircle(randomInt(numCircles));
     setGameStatus('play');
   }
 
@@ -30,8 +35,8 @@ function Circles() {
       setNumCircles(numCircles + 2)
     };
 
-    setRandomColor('#' + Math.floor(Math.random() * 16777215).toString(16));
-    setDifIndexCircle(Math.floor(Math.random() * numCircles));
+    setRandomColor(randomHexColor());
+    setDifIndexCircle(randomInt(numCircles));
   }
 
   for (let i = 0; i < numCircles; i++) {
