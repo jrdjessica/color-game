@@ -7,7 +7,7 @@ function Circles() {
   const [difIndexCircle, setDifIndexCircle] = React.useState(null);
   const [randomColor, setRandomColor] = React.useState('black');
   const [score, setScore] = React.useState(0);
-  const [isGameOver, setIsGameOver] = React.useState(false)
+  const [gameStatus, setGameStatus] = React.useState('start')
 
   const circleElements = [];
 
@@ -16,14 +16,14 @@ function Circles() {
     setNumCircles(6);
     setDifIndexCircle(null);
     setRandomColor('black');
-    setIsGameOver(false);
+    setGameStatus('play');
   }
 
   const resetLevel = (i) => {
     if (difIndexCircle === i) {
       setScore(score + 1)
     } else {
-      setIsGameOver(true)
+      setGameStatus('end')
     };
 
     if (score && score % 5 === 0) {
@@ -52,17 +52,21 @@ function Circles() {
 
   return (
     <div>
-      {isGameOver ? (
+      {gameStatus === 'end' ? (
         <div>
           <h2>Game Over</h2>
           <h3>Final Score: {score}</h3>
-          <button onClick={restartGame}>Restart</button>
+          <button onClick={() => restartGame()}>Restart</button>
         </div>
-      ) : (
-        <div key={containerKey}>
-          Score: {score}
-          <div className="circle-container">{circleElements}</div>
+      ) : gameStatus === 'start' ? (
+        <div>
+          <h2>How to play</h2>
+          <button onClick={() => setGameStatus('play')}>Start</button>
         </div>
+      ) : (<div key={containerKey}>
+        Score: {score}
+        <div className="circle-container">{circleElements}</div>
+      </div>
       )}
     </div>
   );
