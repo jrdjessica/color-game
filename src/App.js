@@ -3,7 +3,7 @@ import './App.css';
 
 
 function Circles() {
-  const [numCircles, setNumCircles] = React.useState(8);
+  const [numCircles, setNumCircles] = React.useState(6);
   const [difIndexCircle, setDifIndexCircle] = React.useState(null)
   const [randomColor, setRandomColor] = React.useState('black');
   const [score, setScore] = React.useState(0)
@@ -13,6 +13,10 @@ function Circles() {
   const resetLevel = (i) => {
     if (difIndexCircle === i) {
       setScore(score + 1)
+    }
+
+    if (score && score % 5 === 0) {
+      setNumCircles(numCircles + 2)
     }
 
     setRandomColor('#' + Math.floor(Math.random() * 16777215).toString(16));
