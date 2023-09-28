@@ -13,6 +13,7 @@ function Circles() {
   const [randomColor, setRandomColor] = React.useState(randomHexColor());
   const [score, setScore] = React.useState(0);
   const [gameStatus, setGameStatus] = React.useState('start')
+  const [message, setMessage] = React.useState('');
 
   const circleElements = [];
 
@@ -29,6 +30,7 @@ function Circles() {
       setScore(score + 1)
     } else {
       setGameStatus('end')
+      setMessage('Sorry, game over')
     };
 
     if (score && score % 5 === 0) {
@@ -59,7 +61,7 @@ function Circles() {
     <div>
       {gameStatus === 'end' ? (
         <div>
-          <h2>Game Over</h2>
+          <h2>{message}</h2>
           <h3>Final Score: {score}</h3>
           <button onClick={() => restartGame()}>Restart</button>
         </div>
