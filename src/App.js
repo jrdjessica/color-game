@@ -14,6 +14,7 @@ function Circles() {
   const [score, setScore] = React.useState(0);
   const [gameStatus, setGameStatus] = React.useState('start')
   const [message, setMessage] = React.useState('');
+  const [highScore, setHighScore] = React.useState(0)
 
   const circleElements = [];
 
@@ -29,8 +30,11 @@ function Circles() {
     if (difIndexCircle === i) {
       setScore(score + 1)
     } else {
-      setGameStatus('end')
-      setMessage('Sorry, game over')
+      setGameStatus('end');
+      setMessage('Sorry, game over');
+      if (score > highScore) {
+        setHighScore(score);
+      }
     };
 
     if (score && score % 5 === 0) {
@@ -40,6 +44,8 @@ function Circles() {
     setRandomColor(randomHexColor());
     setDifIndexCircle(randomInt(numCircles));
   }
+
+  React.useEffect(() => { localStorage.setItem('highScore', JSON.stringify(highScore)); }, [highScore])
 
   for (let i = 0; i < numCircles; i++) {
     const circleColor = i === difIndexCircle ? 'red' : randomColor
