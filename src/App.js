@@ -12,11 +12,18 @@ function Circles() {
   const [difIndexCircle, setDifIndexCircle] = React.useState(randomInt(numCircles));
   const [randomColor, setRandomColor] = React.useState(randomHexColor());
   const [score, setScore] = React.useState(0);
-  const [gameStatus, setGameStatus] = React.useState('start')
+  const [gameStatus, setGameStatus] = React.useState('start');
   const [message, setMessage] = React.useState('');
-  const [highScore, setHighScore] = React.useState(0)
+  const [highScore, setHighScore] = React.useState(0);
+  const [counter, setCounter] = React.useState(0);
 
   const circleElements = [];
+
+  React.useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+    return () => clearInterval(timer);
+  }, [counter])
 
   const restartGame = () => {
     setScore(0);
@@ -24,6 +31,7 @@ function Circles() {
     setRandomColor(randomHexColor());
     setDifIndexCircle(randomInt(numCircles));
     setGameStatus('play');
+    setCounter(60);
   }
 
   const resetLevel = (i) => {
@@ -77,6 +85,7 @@ function Circles() {
           <button onClick={() => setGameStatus('play')}>Start</button>
         </div>
       ) : (<div key={containerKey}>
+        Time: {counter}
         High Score: {highScore}
         Score: {score}
         <div className="circle-container">{circleElements}</div>
