@@ -77,6 +77,7 @@ function Circles() {
           <button onClick={() => setGameStatus('play')}>Start</button>
         </div>
       ) : (<div key={containerKey}>
+        High Score: {highScore}
         Score: {score}
         <div className="circle-container">{circleElements}</div>
       </div>
